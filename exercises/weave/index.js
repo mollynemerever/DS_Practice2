@@ -22,8 +22,25 @@
 //    q.remove() // 2
 //    q.remove() // 'There'
 
-const Queue = require('./queue');
+const Queue = require("./queue");
+//even take from sourceOne
+//odd take from sourceTwo
 
-function weave(sourceOne, sourceTwo) {}
+function weave(sourceOne, sourceTwo) {
+  let sourceThree = new Queue();
+  let count = 0;
+  while (sourceOne.peek() || sourceTwo.peek()) {
+    if (count % 2 === 0 && sourceOne.peek()) {
+      let element = sourceOne.remove();
+      sourceThree.add(element);
+    } else if (count % 2 !== 0 && sourceTwo.peek()) {
+      let item = sourceTwo.remove();
+      sourceThree.add(item);
+    }
+    count++;
+  }
+
+  return sourceThree;
+}
 
 module.exports = weave;
